@@ -3,34 +3,28 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import App from './App';
 import Layout from './layouts/dashboard';
-import DashboardPage from './pages';
-import OrdersPage from './pages/orders';
-
+import School from './pages/On-boarding/School';
 
 const router = createBrowserRouter([
-  {
-    Component: App,
-    children: [
-      {
-        path: '/',
-        Component: Layout,
+    {
+        Component: App,
         children: [
-          {
-            path: '',
-            Component: DashboardPage,
-          },
-          {
-            path: 'orders',
-            Component: OrdersPage,
-          },
+            {
+                path: '/',
+                Component: Layout,
+                children: [
+                    {
+                        path: '',
+                        Component: School,
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>,
 );

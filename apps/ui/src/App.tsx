@@ -6,31 +6,33 @@ import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import type { Navigation } from '@toolpad/core/AppProvider';
 
 const NAVIGATION: Navigation = [
-  {
-    kind: 'header',
-    title: 'Main items',
-  },
-  {
-    title: 'Dashboard',
-    icon: <DashboardIcon />,
-  },
-  {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
-  },
+    {
+        kind: 'header',
+        title: 'Main items',
+    },
+    {
+        title: 'Dashboard',
+        icon: <DashboardIcon />,
+    },
+    {
+        segment: 'orders',
+        title: 'Orders',
+        icon: <ShoppingCartIcon />,
+    },
 ];
 
 const BRANDING = {
-  title: "ui",
+    title: 'ui',
 };
 
-
-export default function App() {
+const App = () => {
+  console.log("fsdf");
   
-  return (
-    <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING}>
-      <Outlet />
-    </ReactRouterAppProvider>
-  );
-}
+    return (
+        <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING}>
+            <Outlet />
+        </ReactRouterAppProvider>
+    );
+};
+
+export default App;
