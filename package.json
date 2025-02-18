@@ -1,0 +1,26 @@
+{
+  "name": "spsu",
+  "version": "1.0.0",
+  "description": "A tool to assist in school administration",
+  "homepage": "https://github.com/arunjose1995/SPSU#readme",
+  "bugs": {
+    "url": "https://github.com/arunjose1995/SPSU/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arunjose1995/SPSU.git"
+  },
+  "license": "UNLICENSED",
+  "author": "",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:ui dev:server",
+    "dev:ui": "npm run dev --workspace apps/ui",
+    "dev:server": "npm run start --workspace apps/server"
+  },
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {
+    "npm-run-all": "4.1.5"
+  }
+}
