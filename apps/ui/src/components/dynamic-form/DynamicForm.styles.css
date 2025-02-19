@@ -1,0 +1,48 @@
+
+  /* MUI-style form layout */
+.mui-style-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .mui-style-form .control-label {
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  /* Add some spacing between fields */
+  .mui-style-form .field {
+    margin-bottom: 10px;
+  }
+  
+  /* Handle nested fields */
+  .mui-style-form fieldset {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+  }
+  
+  /* Optional: Grid layout for form fields */
+  .mui-style-form .form {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ensures two equal columns */
+    gap: 20px; /* Adds spacing between items */
+    padding: 10px;
+    align-items: start;
+  }
+  
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
