@@ -18,12 +18,12 @@ export const NAVIGATION: Navigation = [
     {
         segment: 'schools',
         title: 'Schools',
-        icon: <CircularBorderImage imgSrc="/images/icons/self-appraisal.svg" />,
+        icon: <CircularBorderImage imgSrc="/images/icons/school.svg" />,
     },
     {
         segment: 'teachers',
         title: 'Teachers',
-        icon: <CircularBorderImage imgSrc="/images/icons/teams-appraisal.svg" />,
+        icon: <CircularBorderImage imgSrc="/images/icons/school.svg" />,
     },
    
 ];

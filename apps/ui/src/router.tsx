@@ -8,9 +8,9 @@ import { DashboardLayout, PageContainer } from '@toolpad/core';
 //                     Begin Page Components Imports                      //
 // ********************************************************************** //
 import SignIn from './pages/Sign-in/SignIn';
-import OrdersPage from './pages/orders';
 import { LAYOUT_STYLING } from './layoutConfig';
 import App from './App';
+import Schools from './pages/Schools/Schools';
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // ********************************************************************** //
 //                      End Page Components Imports                       //
@@ -67,9 +67,11 @@ const router = createBrowserRouter([
                 Component: Layout,
                 children: [
                     {
-                        path: '',
-                        Component: OrdersPage,
+                        path: 'schools',
+                        // Component: SchoolOnboarding,
+                        Component: Schools
                     },
+                    
                    
                 ],
             },
