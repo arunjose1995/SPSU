@@ -80,7 +80,9 @@ const login = async (req: Request, res: Response): Promise<void> => {
                     .setExpirationTime('24h')
                     .sign(jwtSigninKey);
 
-                const jwtEncryptionKey = jose.base64url.decode(JWT_ENCRYPTION_PRIVATE_KEY || '');
+                const jwtEncryptionKey = jose.base64url.decode(
+                    JWT_ENCRYPTION_PRIVATE_KEY as string
+                );
                 const jwtEncryptionKeyWith256bit = crypto
                     .createHash('sha256')
                     .update(jwtEncryptionKey)
