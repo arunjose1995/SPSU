@@ -11,8 +11,8 @@ export default defineConfig({
         enabled: true,
       },
       manifest: {
-        name: "My PWA App",
-        short_name: "PWA App",
+        name: "Shiksha Pradhanam Sahayya Upakaranam",
+        short_name: "SPSU",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",
@@ -20,25 +20,25 @@ export default defineConfig({
         scope: "/",
         icons: [
           {
-            src: "/public/app-icons/android/android-launchericon-144-144.png",
+            src: "/public/app-icons/android-icon-144-144.png",
             sizes: "144x144",
             type: "image/png",
           },
           {
-            src: "/public/app-icons/android/android-launchericon-512-512.png",
+            src: "/public/app-icons/android-icon-512-512.png",
             sizes: "512x512",
             type: "image/png"
           }
         ],
         screenshots: [
           {
-            src: "/public/app-icons/screenshots/mobile.png",
+            src: "/public/app-icons/mobile.png",
             sizes: "503x642",
             type: "image/png",
             form_factor: "narrow",
           },
           {
-            src: "/public/app-icons/screenshots/desktop.png",
+            src: "/public/app-icons/desktop.png",
             sizes: "1359x700",
             type: "image/png",
             form_factor: "wide",
