@@ -8,6 +8,7 @@ interface DynamicFormProps {
   formData: any;
   onSubmit: (data: any) => void;
   uiSchema: any;
+  onCancel?:() =>void;
 }
 const ObjectFieldTemplate = ({ properties }: any) => {
   return (
@@ -21,7 +22,28 @@ const ObjectFieldTemplate = ({ properties }: any) => {
   );
 };
   
-const DynamicForm: React.FC<DynamicFormProps> = ({ schema, formData, onSubmit, uiSchema }) => {
+const CustomButtonTemplate = (props: any) => {
+  return (
+    <div className="button-container">
+      <button
+        type="submit"
+        className="btn btn-info"
+        onClick={props.onClick}
+      >
+        Submit
+      </button>
+      <button
+        type="button"
+        className="btn btn-secondary"
+        onClick={props.onCancel}
+      >
+        Cancel
+      </button>
+    </div>
+  );
+};
+
+const DynamicForm: React.FC<DynamicFormProps> = ({ schema, formData, onSubmit, uiSchema, onCancel }) => {
   const customizedUiSchema = {
     ...uiSchema,
     "ui:classNames": "mui-style-form",
@@ -33,7 +55,15 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ schema, formData, onSubmit, u
       formData={formData}
       validator={validator}
       uiSchema={customizedUiSchema}
-      templates={{ ObjectFieldTemplate }}
+      // templates={{ ObjectFieldTemplate }}
+      templates={{ 
+        ObjectFieldTemplate,
+        ButtonTemplates: {
+          SubmitButton: (props: any) => (
+            <CustomButtonTemplate {...props} onCancel={onCancel} />
+          ),
+        },
+      }}
       onSubmit={(data) => onSubmit(data.formData)}
     />
   );
