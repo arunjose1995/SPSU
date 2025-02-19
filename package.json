@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:ui dev:server",
     "dev:ui": "npm run dev --workspace apps/ui",
-    "dev:server": "npm run start --workspace apps/server"
+    "dev:server": "npm run dev --workspace apps/server"
   },
   "workspaces": [
     "apps/*"
