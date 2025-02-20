@@ -30,7 +30,7 @@ export const NAVIGATION: Navigation = [
 
 export const BRANDING = {
     title: 'Shiksha Pradhanam Sahayya Upakaranam',
-    logo: <img src="/images/spsu.jpeg" alt="Shiksha Pradhanam Sahayya Upakaranam" width={50} />,
+    logo: <img src="/images/spsu.png" alt="Shiksha Pradhanam Sahayya Upakaranam" width={50} />,
     homeUrl: '/',
 };
 
