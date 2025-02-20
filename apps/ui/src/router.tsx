@@ -11,7 +11,7 @@ import SignIn from './pages/Sign-in/SignIn';
 import OrdersPage from './pages/orders';
 import { LAYOUT_STYLING } from './layoutConfig';
 import App from './App';
-// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // ********************************************************************** //
 //                      End Page Components Imports                       //
 // ********************************************************************** //
@@ -25,23 +25,6 @@ const NotFound = () => (
 );
 
 const Layout = () => {
-    // const { session, loading } = useSession();
-    const location = useLocation();
-
-    // if (loading) {
-    //     return (
-    //         <div style={{ width: '100%' }}>
-    //             <LinearProgress />
-    //         </div>
-    //     );
-    // }
-
-    // if (!session) {
-        // Add the `callbackUrl` search parameter
-       // const redirectTo = `/sign-in?callbackUrl=${encodeURIComponent(location.pathname)}`;
-        //return <Navigate to={redirectTo} replace />;
-    // }
-
     return (
         <DashboardLayout
             disableCollapsibleSidebar={true}
@@ -86,12 +69,12 @@ const router = createBrowserRouter([
 ]);
 
 // Initialize QueryClient
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 const Router = () => (
-    // <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-    // </QueryClientProvider>
+    </QueryClientProvider>
 );
 
 export default Router;
