@@ -27,6 +27,7 @@ const App = () => {
         return {
             signIn: SignIn,
             signOut: () => {
+                localStorage.clear();
                 setSession(null);
                 navigate('/sign-in');
             },

@@ -4,6 +4,7 @@ export interface Session {
     user: {
        email?: string;
        isAdmin?: boolean;
+       token: string;   
     };
 }
 

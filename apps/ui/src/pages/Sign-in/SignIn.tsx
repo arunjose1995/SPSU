@@ -10,7 +10,7 @@ const providers = [{ id: 'credentials', name: 'Email and Password' }];
 
 const SignIn = () => {
   const theme = useTheme();
-  const { session, setSession, loading } = useSession();
+  const { session } = useSession();
   const navigate = useNavigate();
 
   if (session) {
@@ -26,15 +26,16 @@ const SignIn = () => {
  
 if(userAuth.result=='Success')
 {
-  
   const userSession: Session = {
     user: {
        
       email: formData.get('email') as string,
       isAdmin: true,
+      token: userAuth.responseObj.responseDataParams.data.token,
     },
 };
-setSession(userSession);
+localStorage.setItem('session', JSON.stringify(userSession));
+// setSession(userSession);
   navigate('/', { replace: true });
   return {};
 }

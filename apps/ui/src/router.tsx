@@ -1,6 +1,4 @@
-import React from 'react';
-import { createBrowserRouter, RouterProvider, Outlet, Navigate, useLocation } from 'react-router';
-import LinearProgress from '@mui/material/LinearProgress';
+import { createBrowserRouter, RouterProvider, Outlet, useLocation, Navigate } from 'react-router';
 import { DashboardLayout, PageContainer } from '@toolpad/core';
 
 
@@ -25,6 +23,11 @@ const NotFound = () => (
 );
 
 const Layout = () => {
+      if(localStorage.getItem('session') == null)
+    {
+        return <Navigate to="/sign-in" replace />;
+    }
+
     return (
         <DashboardLayout
             disableCollapsibleSidebar={true}
