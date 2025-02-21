@@ -1,4 +1,4 @@
-import { Navigation } from '@toolpad/core';
+import { Authentication, Navigation } from '@toolpad/core';
 import { COLORS } from '../theme';
 import CircularBorderImage from './components/circular-border-image/CircularBorderImage';
 export const NAVIGATION: Navigation = [
@@ -30,9 +30,14 @@ export const NAVIGATION: Navigation = [
 
 export const BRANDING = {
     title: 'Shiksha Pradhanam Sahayya Upakaranam',
-    logo: <img src="/images/spsu.jpeg" alt="SPSU" width={50} />,
+    logo: <img src="/images/spsu.png" alt="Shiksha Pradhanam Sahayya Upakaranam" width={50} />,
     homeUrl: '/',
 };
+
+// export const AUTHENTICATION: Authentication = {
+//     signIn: signInWithGoogle,
+//     signOut: firebaseSignOut,
+// };
 
 export const LAYOUT_STYLING = {
     '.MuiAppBar-root, .MuiDrawer-paper, .MuiListSubheader-root': {

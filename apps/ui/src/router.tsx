@@ -1,4 +1,6 @@
-import { createBrowserRouter, RouterProvider, Outlet, useLocation, Navigate } from 'react-router';
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Outlet, Navigate, useLocation } from 'react-router';
+import LinearProgress from '@mui/material/LinearProgress';
 import { DashboardLayout, PageContainer } from '@toolpad/core';
 
 
@@ -6,10 +8,10 @@ import { DashboardLayout, PageContainer } from '@toolpad/core';
 //                     Begin Page Components Imports                      //
 // ********************************************************************** //
 import SignIn from './pages/Sign-in/SignIn';
-import OrdersPage from './pages/orders';
 import { LAYOUT_STYLING } from './layoutConfig';
 import App from './App';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Schools from './pages/Schools/Schools';
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // ********************************************************************** //
 //                      End Page Components Imports                       //
 // ********************************************************************** //
@@ -23,10 +25,22 @@ const NotFound = () => (
 );
 
 const Layout = () => {
-      if(localStorage.getItem('session') == null)
-    {
-        return <Navigate to="/sign-in" replace />;
-    }
+    // const { session, loading } = useSession();
+    const location = useLocation();
+
+    // if (loading) {
+    //     return (
+    //         <div style={{ width: '100%' }}>
+    //             <LinearProgress />
+    //         </div>
+    //     );
+    // }
+
+    // if (!session) {
+        // Add the `callbackUrl` search parameter
+       // const redirectTo = `/sign-in?callbackUrl=${encodeURIComponent(location.pathname)}`;
+        //return <Navigate to={redirectTo} replace />;
+    // }
 
     return (
         <DashboardLayout
@@ -53,9 +67,11 @@ const router = createBrowserRouter([
                 Component: Layout,
                 children: [
                     {
-                        path: '',
-                        Component: OrdersPage,
+                        path: 'schools',
+                        // Component: SchoolOnboarding,
+                        Component: Schools
                     },
+                    
                    
                 ],
             },
@@ -72,12 +88,12 @@ const router = createBrowserRouter([
 ]);
 
 // Initialize QueryClient
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 const Router = () => (
-    <QueryClientProvider client={queryClient}>
+    // <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-    </QueryClientProvider>
+    // </QueryClientProvider>
 );
 
 export default Router;
