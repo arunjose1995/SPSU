@@ -10,37 +10,38 @@ const providers = [{ id: 'credentials', name: 'Email and Password' }];
 
 const SignIn = () => {
   const theme = useTheme();
-  const { session } = useSession();
+  const { session, setSession, loading } = useSession();
+
   const navigate = useNavigate();
 
   if (session) {
     return <Navigate to="/" />;
-}
+  }
 
   const signIn: (provider: AuthProvider, formData: FormData) => void = async (provider, formData) => {
     const credentials = {
       email: formData.get('email') as string,
       password: formData.get('password') as string,
     };
- const userAuth = await useUserAuthentication(credentials);
- 
-if(userAuth.result=='Success')
-{
-  const userSession: Session = {
-    user: {
-       
-      email: formData.get('email') as string,
-      isAdmin: true,
-      token: userAuth.responseObj.responseDataParams.data.token,
-    },
-};
-localStorage.setItem('session', JSON.stringify(userSession));
-// setSession(userSession);
-  navigate('/', { replace: true });
-  return {};
-}
+    const userAuth = await useUserAuthentication(credentials);
 
-return { error: userAuth.result=='Error' || 'Failed to sign in' };
+    if (userAuth.result == 'Success') {
+      const userSession: Session = {
+        user: {
+
+          email: formData.get('email') as string,
+          isAdmin: userAuth.responseObj.responseDataParams.data.isAdmin,
+          token: userAuth.responseObj.responseDataParams.data.token,
+        },
+      };
+      setSession(userSession);
+      localStorage.setItem('session', JSON.stringify(userSession));
+      
+      navigate('/', { replace: true });
+      return {};
+    }
+
+    return { error: userAuth.result == 'Error' || 'Failed to sign in' };
 
 
   };

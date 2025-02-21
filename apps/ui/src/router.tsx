@@ -1,6 +1,4 @@
-import React from 'react';
 import { createBrowserRouter, RouterProvider, Outlet, Navigate, useLocation } from 'react-router';
-import LinearProgress from '@mui/material/LinearProgress';
 import { DashboardLayout, PageContainer } from '@toolpad/core';
 
 
@@ -11,7 +9,8 @@ import SignIn from './pages/Sign-in/SignIn';
 import { LAYOUT_STYLING } from './layoutConfig';
 import App from './App';
 import Schools from './pages/Schools/Schools';
-// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import onboardingRequest from './pages/Schools/Schools.view';
 // ********************************************************************** //
 //                      End Page Components Imports                       //
 // ********************************************************************** //
@@ -25,23 +24,10 @@ const NotFound = () => (
 );
 
 const Layout = () => {
-    // const { session, loading } = useSession();
-    const location = useLocation();
-
-    // if (loading) {
-    //     return (
-    //         <div style={{ width: '100%' }}>
-    //             <LinearProgress />
-    //         </div>
-    //     );
-    // }
-
-    // if (!session) {
-        // Add the `callbackUrl` search parameter
-       // const redirectTo = `/sign-in?callbackUrl=${encodeURIComponent(location.pathname)}`;
-        //return <Navigate to={redirectTo} replace />;
-    // }
-
+   const session = localStorage.getItem('session');
+   if(!session){
+         return <Navigate to="/sign-in" replace />;
+   }
     return (
         <DashboardLayout
             disableCollapsibleSidebar={true}
@@ -68,10 +54,12 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: 'schools',
-                        // Component: SchoolOnboarding,
                         Component: Schools
                     },
-                    
+                    {
+                        path: 'onboardingRequest',
+                        Component: onboardingRequest
+                    },
                    
                 ],
             },
@@ -88,12 +76,12 @@ const router = createBrowserRouter([
 ]);
 
 // Initialize QueryClient
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 const Router = () => (
-    // <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-    // </QueryClientProvider>
+    </QueryClientProvider>
 );
 
 export default Router;

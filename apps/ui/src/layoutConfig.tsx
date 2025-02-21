@@ -34,10 +34,6 @@ export const BRANDING = {
     homeUrl: '/',
 };
 
-// export const AUTHENTICATION: Authentication = {
-//     signIn: signInWithGoogle,
-//     signOut: firebaseSignOut,
-// };
 
 export const LAYOUT_STYLING = {
     '.MuiAppBar-root, .MuiDrawer-paper, .MuiListSubheader-root': {

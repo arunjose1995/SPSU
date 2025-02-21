@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import DynamicForm from '@/components/dynamic-form/DynamicForm';
 import { schema, uiSchema } from './Schools.schema';
 import { useOnboardingSchools } from './Schools.api';
+import { Snackbar, Alert } from '@mui/material';
 
 const Schools = () => {
   const [formData, setFormData] = useState({});
-  const onboardingSchools= useOnboardingSchools();
+  
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const onboardingSchools = useOnboardingSchools();
 
   const handleSubmit = (data: any) => {
     const requestData = {
@@ -29,21 +32,38 @@ const Schools = () => {
       website: data.website,
     };
 
-    onboardingSchools.mutate(requestData,{
-      onSuccess: () => {
-console.log('School data submitted successfully for onboarding');
+    onboardingSchools.mutate(requestData, {
+      onSuccess: () => { 
+        setFormData({});
+        setSnackbarOpen(true);
+      },
 
+      onError: (error) => {
+        console.error("Error submitting onboarding request:", error);
       }
 
     });
   };
-
-  return ( <DynamicForm
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+  return (<> <DynamicForm
     schema={schema}
     uiSchema={uiSchema}
     formData={formData}
     onSubmit={handleSubmit}
-  /> );
+  />
+    <Snackbar
+      open={snackbarOpen}
+      autoHideDuration={4000}
+      onClose={handleSnackbarClose}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    >
+      <Alert onClose={handleSnackbarClose} severity="success">
+        Onboarding Request Submitted Successfully
+      </Alert>
+    </Snackbar>
+  </>);
 };
 
 export default Schools;
