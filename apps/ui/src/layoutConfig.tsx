@@ -21,9 +21,9 @@ export const NAVIGATION: Navigation = [
         icon: <CircularBorderImage imgSrc="/images/icons/school.svg" />,
     },
     {
-        segment: 'teachers',
-        title: 'Teachers',
-        icon: <CircularBorderImage imgSrc="/images/icons/school.svg" />,
+        segment: 'staffs',
+        title: 'Staffs',
+        icon: <CircularBorderImage imgSrc="/images/icons/staff.svg" />,
     },
    
 ];

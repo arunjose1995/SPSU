@@ -11,6 +11,7 @@ import App from './App';
 import Schools from './pages/Schools/Schools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import onboardingRequest from './pages/Schools/Schools.view';
+import StaffProfiles from './pages/Staffs/Staffs';
 // ********************************************************************** //
 //                      End Page Components Imports                       //
 // ********************************************************************** //
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
                         path: 'onboardingRequest',
                         Component: onboardingRequest
                     },
+                    {
+                        path: 'staffs',
+                        Component: StaffProfiles
+                    }
                    
                 ],
             },

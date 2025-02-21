@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: 'https://ba98-103-156-100-18.ngrok-free.app', 
+    baseURL: 'https://ba6c-103-156-100-18.ngrok-free.app', 
     headers: {
         'Content-Type': 'application/json',
     },
