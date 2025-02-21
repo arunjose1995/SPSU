@@ -2,30 +2,50 @@ import * as React from 'react';
 import { AppProvider } from '@toolpad/core/AppProvider';
 import { SignInPage, type AuthProvider } from '@toolpad/core/SignInPage';
 import { useTheme } from '@mui/material/styles';
+import { useUserAuthentication } from './SignIn.api';
+import { useSession, type Session } from '@/context/SessionContext';
+import { Navigate, useNavigate } from 'react-router';
 
-// preview-start
 const providers = [{ id: 'credentials', name: 'Email and Password' }];
-// preview-end
-
-const signIn: (provider: AuthProvider, formData: FormData) => void = async (
-  provider,
-  formData,
-) => {
-  const promise = new Promise<void>((resolve) => {
-    setTimeout(() => {
-      alert(
-        `Signing in with "${provider.name}" and credentials: ${formData.get('email')}, ${formData.get('password')}`,
-      );
-      resolve();
-    }, 300);
-  });
-  return promise;
-};
 
 const SignIn = () => {
   const theme = useTheme();
+  const { session } = useSession();
+  const navigate = useNavigate();
+
+  if (session) {
+    return <Navigate to="/" />;
+}
+
+  const signIn: (provider: AuthProvider, formData: FormData) => void = async (provider, formData) => {
+    const credentials = {
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    };
+ const userAuth = await useUserAuthentication(credentials);
+ 
+if(userAuth.result=='Success')
+{
+  const userSession: Session = {
+    user: {
+       
+      email: formData.get('email') as string,
+      isAdmin: true,
+      token: userAuth.responseObj.responseDataParams.data.token,
+    },
+};
+localStorage.setItem('session', JSON.stringify(userSession));
+// setSession(userSession);
+  navigate('/', { replace: true });
+  return {};
+}
+
+return { error: userAuth.result=='Error' || 'Failed to sign in' };
+
+
+  };
+
   return (
-    // preview-start
     <AppProvider theme={theme}>
       <SignInPage
         signIn={signIn}
@@ -33,8 +53,7 @@ const SignIn = () => {
         slotProps={{ emailField: { autoFocus: false } }}
       />
     </AppProvider>
-    // preview-end
   );
-}
+};
 
 export default SignIn;
